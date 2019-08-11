@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard-container">
+  <div class="home-container">
     <AxureGroup />
   </div>
 </template>
@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.dashboard {
+.home {
   &-container {
     margin: 30px;
   }

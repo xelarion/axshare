@@ -3,10 +3,12 @@ import { param2Obj } from '../src/utils'
 
 import user from './user'
 import table from './table'
+import axure_group from './axure_group'
 
 const mocks = [
   ...user,
-  ...table
+  ...table,
+  ...axure_group
 ]
 
 // for front mock

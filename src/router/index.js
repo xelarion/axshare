@@ -42,17 +42,41 @@ export const constantRoutes = [
     component: () => import('@/views/404'),
     hidden: true
   },
-
+  //
+  // {
+  //   path: '/',
+  //   component: Layout,
+  //   redirect: '/dashboard',
+  //   children: [{
+  //     path: 'dashboard',
+  //     name: 'Dashboard',
+  //     component: () => import('@/views/dashboard/index'),
+  //     meta: { title: 'Dashboard', icon: 'dashboard' }
+  //   }]
+  // },
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/home',
     children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      path: '/home',
+      name: 'AxureGroups',
+      component: () => import('@/views/home/index'),
+      meta: { title: 'AxureGroups', icon: 'dashboard' }
     }]
+  },
+
+  {
+    path: '/axure',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        name: 'Axure',
+        component: () => import('@/views/axures/index'),
+        meta: { title: 'Axure', icon: 'form' }
+      }
+    ]
   },
 
   {
