@@ -13,30 +13,31 @@
           {{ scope.$index }}
         </template>
       </el-table-column>
-      <el-table-column label="Name">
+      <el-table-column label="描述">
         <template slot-scope="scope">
-          {{ scope.row.title }}
+          {{ scope.row.desc }}
         </template>
       </el-table-column>
-      <el-table-column label="Author" width="110" align="center">
+      <el-table-column label="附件历史" width="110" align="center">
         <template slot-scope="scope">
-          <span>{{ scope.row.author }}</span>
+          <span>附件历史</span>
         </template>
       </el-table-column>
-      <el-table-column label="Pageviews" width="110" align="center">
+      <el-table-column label="最新原型地址" width="110" align="center">
         <template slot-scope="scope">
-          {{ scope.row.pageviews }}
+          {{ scope.row.latest_link }}
         </template>
       </el-table-column>
-      <el-table-column class-name="status-col" label="Status" width="110" align="center">
+      <el-table-column class-name="status-col" label="永久地址" width="210" align="center">
         <template slot-scope="scope">
           <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
+          {{ scope.row.permanent_link }}
         </template>
       </el-table-column>
-      <el-table-column align="center" prop="created_at" label="Display_time" width="200">
+      <el-table-column align="center" prop="created_at" label="更新时间" width="200">
         <template slot-scope="scope">
           <i class="el-icon-time" />
-          <span>{{ scope.row.display_time }}</span>
+          <span>{{ scope.row.updated_at }}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -44,7 +45,7 @@
 </template>
 
 <script>
-import { getList } from '@/api/table'
+import { getList } from '@/api/axure'
 
 export default {
   filters: {
@@ -70,7 +71,7 @@ export default {
     fetchData() {
       this.listLoading = true
       getList().then(response => {
-        this.list = response.data.items
+        this.list = response.data.axures
         this.listLoading = false
       })
     }

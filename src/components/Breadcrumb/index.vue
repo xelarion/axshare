@@ -64,7 +64,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.app-breadcrumb.el-breadcrumb {
+  a {
+    color: #5aa7be;
+  }
+
+  .app-breadcrumb.el-breadcrumb {
   display: inline-block;
   font-size: 14px;
   line-height: 50px;

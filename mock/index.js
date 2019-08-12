@@ -4,11 +4,13 @@ import { param2Obj } from '../src/utils'
 import user from './user'
 import table from './table'
 import axure_group from './axure_group'
+import axure from './axure'
 
 const mocks = [
   ...user,
   ...table,
-  ...axure_group
+  ...axure_group,
+  ...axure
 ]
 
 // for front mock

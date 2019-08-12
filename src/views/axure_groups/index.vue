@@ -1,6 +1,5 @@
 <template>
   <div class="groups">
-    <h1>Welcome to axure groups</h1>
     <div class="groups-list">
       <div v-for="group in axure_groups" :key="group.id" class="column" @click="axureList(group.id)">
         <div class="card-box">
@@ -34,7 +33,6 @@ export default {
       })
     },
     axureList(groupId) {
-      console.log(groupId)
       this.$router.push({ path: '/axure' })
     }
   }
