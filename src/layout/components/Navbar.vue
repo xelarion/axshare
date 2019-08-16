@@ -1,8 +1,10 @@
 <template>
   <div class="navbar">
-    <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
+    <div class="navbar-container">
+      <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
 
-    <breadcrumb class="breadcrumb-container" />
+      <breadcrumb class="breadcrumb-container" />
+    </div>
   </div>
 </template>
 
@@ -41,6 +43,15 @@ export default {
   position: relative;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  padding: 0 30px 0 30px;
+
+  .navbar-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    @media screen and (min-width: 1500px) {
+      max-width: 1500px;
+    }
+  }
 
   .hamburger-container {
     line-height: 46px;

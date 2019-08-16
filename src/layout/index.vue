@@ -52,9 +52,8 @@ export default {
   @import "~@/styles/mixin.scss";
   @import "~@/styles/variables.scss";
 
-  .app-main {
-    padding-left: 20px;
-    padding-right: 20px;
+  .main-container {
+    background-color: rgb(246, 246, 246);
   }
   .app-wrapper {
     @include clearfix;

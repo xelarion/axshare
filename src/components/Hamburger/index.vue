@@ -23,6 +23,6 @@ export default {
 
 <style scoped>
 .hamburger {
-  padding: 5px 8px 8px 40px;
+  padding: 5px 8px 8px 0;
 }
 </style>
