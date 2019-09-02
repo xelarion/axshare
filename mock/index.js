@@ -6,6 +6,8 @@ import table from './table'
 import axure_group from './axure_group'
 import axure from './axure'
 
+// Spread 运算符 (...) 将一个数组转为用逗号分隔的参数序列
+// [{url: '', type: ''}, {}]
 const mocks = [
   ...user,
   ...table,

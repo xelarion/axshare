@@ -1,17 +1,16 @@
 <template>
   <div class="home-container">
-    <AxureGroup />
+    <span>最新活动</span>
+    <router-link to="/axure_groups">原型组织</router-link>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import AxureGroup from '../axure_groups/index'
 
 export default {
   name: 'Dashboard',
   components: {
-    AxureGroup
   },
   computed: {
     ...mapGetters([

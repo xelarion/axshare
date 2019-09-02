@@ -20,18 +20,20 @@
       </el-table-column>
       <el-table-column label="附件历史" width="110" align="center">
         <template slot-scope="scope">
-          <span>附件历史</span>
+          {{ scope.row.desc }}
+          <axure-attachment />
         </template>
       </el-table-column>
       <el-table-column label="最新原型地址" width="110" align="center">
         <template slot-scope="scope">
-          {{ scope.row.latest_link }}
+          <a target="_blank" :href="scope.row.web_link" class="ax-axure-link">
+            最新地址
+          </a>
         </template>
       </el-table-column>
-      <el-table-column class-name="status-col" label="永久地址" width="210" align="center">
+      <el-table-column class-name="status-col" label="永久地址" width="310" align="center">
         <template slot-scope="scope">
-          <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
-          {{ scope.row.permanent_link }}
+          <copy-link :input-data="scope.row.permanent_link" />
         </template>
       </el-table-column>
       <el-table-column align="center" prop="created_at" label="更新时间" width="200">
@@ -46,17 +48,13 @@
 
 <script>
 import { getList } from '@/api/axure'
+import AxureAttachment from '@/views/attachments/index'
+import CopyLink from './CopyLink'
 
 export default {
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        published: 'success',
-        draft: 'gray',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    }
+  components: {
+    AxureAttachment,
+    CopyLink
   },
   data() {
     return {
@@ -70,7 +68,7 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
-      getList().then(response => {
+      getList(1).then(response => {
         this.list = response.data.axures
         this.listLoading = false
       })
@@ -78,3 +76,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+  .ax-axure-link {
+    color: #20a0ff;
+  }
+</style>

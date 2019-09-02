@@ -65,7 +65,7 @@ export default {
 
 <style lang="scss" scoped>
   a {
-    color: #5aa7be;
+    color: #20a0ff;
   }
 
   .app-breadcrumb.el-breadcrumb {

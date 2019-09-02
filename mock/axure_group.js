@@ -1,16 +1,16 @@
 import Mock from 'mockjs'
 
 const data = Mock.mock({
-  'axure_groups|10': [{
-    id: '@id',
-    title: '@sentence(1, 3)',
+  'axure_groups|5-10': [{
+    'id|+1': 1,
+    name: '@sentence(1, 3)',
     desc: '@sentence(1, 5)'
   }]
 })
 
 export default [
   {
-    url: '/axure_groups/list',
+    url: '/axure_groups',
     type: 'get',
     response: config => {
       const axure_groups = data.axure_groups

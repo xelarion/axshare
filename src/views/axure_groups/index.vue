@@ -1,12 +1,17 @@
 <template>
   <div class="groups">
     <div class="groups-list">
-      <div v-for="group in axure_groups" :key="group.id" class="column" @click="axureList(group.id)">
+      <router-link
+        v-for="group in axure_groups"
+        :key="group.id"
+        :to="'/axure_groups/' + group.id + '/axures'"
+        class="column"
+      >
         <div class="card-box">
-          <p class="title">{{ group.title }}</p>
+          <p class="title">{{ group.name }}</p>
           <p class="desc">{{ group.desc }}</p>
         </div>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -31,9 +36,6 @@ export default {
         this.axure_groups = response.data.axure_groups
         this.listLoading = false
       })
-    },
-    axureList(groupId) {
-      this.$router.push({ path: '/axure' })
     }
   }
 }

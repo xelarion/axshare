@@ -1,19 +1,19 @@
 import Mock from 'mockjs'
 
 const data = Mock.mock({
-  'axures|7': [{
-    id: '@id',
+  'axures|1-25': [{
+    'id|+1': 1,
     desc: '@sentence(10, 20)',
-    'status|1': ['published', 'draft', 'deleted'],
-    latest_link: 'latest_link',
+    web_link: 'web_link',
+    is_released: true,
     updated_at: '@datetime',
-    permanent_link: '@integer(300, 5000)'
+    permanent_link: 'www.baidu.com'
   }]
 })
 
 export default [
   {
-    url: '/axure/list',
+    url: '/axure_groups/:id(\\d+)/axures',
     type: 'get',
     response: config => {
       const axures = data.axures

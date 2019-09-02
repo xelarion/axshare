@@ -1,9 +1,8 @@
 import request from '@/utils/request'
 
-export function getList(params) {
+export function getList(axure_group_id) {
   return request({
-    url: '/axure/list',
-    method: 'get',
-    params
+    url: `/axure_groups/${axure_group_id}/axures`,
+    method: 'get'
   })
 }
