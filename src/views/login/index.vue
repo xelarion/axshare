@@ -43,9 +43,11 @@
 
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
 
-      <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
-        <span> password: any</span>
+      <div class="login-widget">
+        <span>更多登录方式</span>
+        <a href="http://redmine.tajansoft.com/login/" class="link-type">
+          <img class="login-icon" src="@/assets/images/redmine_fluid_icon.png" alt="redmine">
+        </a>
       </div>
 
     </el-form>
@@ -74,8 +76,8 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
-        password: '111111'
+        username: '',
+        password: ''
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -192,7 +194,7 @@ $light_gray:#eee;
     overflow: hidden;
   }
 
-  .tips {
+  .login-widget {
     font-size: 14px;
     color: #fff;
     margin-bottom: 10px;
@@ -201,6 +203,11 @@ $light_gray:#eee;
       &:first-of-type {
         margin-right: 16px;
       }
+    }
+
+    .login-icon {
+      width: 25px;
+      margin-bottom: -5px;
     }
   }
 
