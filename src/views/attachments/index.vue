@@ -1,13 +1,20 @@
 <template>
   <div class="components-container">
-    <el-button type="primary" @click="dialogTableVisible = true">
-      历史
-    </el-button>
-    <el-dialog v-el-drag-dialog :visible.sync="dialogTableVisible" title="Shipping address" @dragDialog="handleDrag">
-      <el-table :data="gridData">
-        <el-table-column property="date" label="Date" width="150" />
-        <el-table-column property="name" label="Name" width="200" />
-        <el-table-column property="address" label="Address" />
+    <el-dialog
+      v-el-drag-dialog
+      width="70%"
+      :visible.sync="dialogTableVisible"
+      :title="'ID:' + axureId + ':ff'"
+      @dragDialog="handleDrag"
+    >
+
+      <el-table :data="list">
+        <el-table-column property="id" label="ID" width="150" />
+        <el-table-column property="user.username" label="上传作者" width="150" />
+        <el-table-column property="created_at" label="上传时间" width="150" />
+        <el-table-column property="desc" label="备注" width="150" />
+        <el-table-column property="download_url" label="压缩包链接" width="200" />
+        <el-table-column property="web_link" label="原型地址" />
       </el-table>
     </el-dialog>
   </div>
@@ -15,32 +22,26 @@
 
 <script>
 import elDragDialog from '@/directive/el-drag-dialog' // base on element-ui
-import { getList } from '../../api/attachment'
+import { getList } from '@/api/attachment'
 
 export default {
-  name: 'AxureAttachment',
+  name: 'Attachment',
   directives: { elDragDialog },
+  props: {
+    axureGroupId: {
+      type: Number,
+      required: true
+    },
+    axureId: {
+      type: Number,
+      required: true
+    }
+  },
   data() {
     return {
       dialogTableVisible: false,
       value: '',
-      gridData: [{
-        date: '2016-05-02',
-        name: 'John Smith',
-        address: 'No.1518,  Jinshajiang Road, Putuo District'
-      }, {
-        date: '2016-05-04',
-        name: 'John Smith',
-        address: 'No.1518,  Jinshajiang Road, Putuo District'
-      }, {
-        date: '2016-05-01',
-        name: 'John Smith',
-        address: 'No.1518,  Jinshajiang Road, Putuo District'
-      }, {
-        date: '2016-05-03',
-        name: 'John Smith',
-        address: 'No.1518,  Jinshajiang Road, Putuo District'
-      }]
+      list: null
     }
   },
   created() {
@@ -53,17 +54,13 @@ export default {
     },
     fetchData() {
       this.listLoading = true
-      getList().then(response => {
-        this.list = response.data.axures
+      getList(this.axureGroupId, this.axureId).then(response => {
+        this.list = response.data
         this.listLoading = false
+        this.dialogTableVisible = true
       })
     }
   }
 }
 </script>
 
-<style scoped>
-  .el-button {
-    padding: 6px 12px;
-  }
-</style>

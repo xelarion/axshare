@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: 'Yeah',
+  title: 'AxShare',
 
   /**
    * @type {boolean} true | false

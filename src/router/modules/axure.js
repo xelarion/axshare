@@ -12,6 +12,7 @@ const axureRouter = {
     {
       path: '',
       component: () => import('@/views/axures/index'),
+      props: (route) => ({ axureGroupId: parseInt(route.params.axure_group_id) }),
       meta: { title: 'Axure List' }
     }
   ]

@@ -1,8 +1,8 @@
 <template>
-  <div class="groups">
+  <div class="app-container groups">
     <div class="groups-list">
       <router-link
-        v-for="group in axure_groups"
+        v-for="group in list"
         :key="group.id"
         :to="'/axure_groups/' + group.id + '/axures'"
         class="column"
@@ -22,7 +22,7 @@ import { getList } from '@/api/axure_group'
 export default {
   data() {
     return {
-      axure_groups: null,
+      list: null,
       listLoading: true
     }
   },
@@ -33,7 +33,7 @@ export default {
     fetchData() {
       this.listLoading = true
       getList().then(response => {
-        this.axure_groups = response.data.axure_groups
+        this.list = response.data
         this.listLoading = false
       })
     }
@@ -47,7 +47,7 @@ export default {
     padding: 10px;
     float: left;
     width: 25%;
-    height: 180px;
+    height: 190px;
   }
   @media screen and (max-width: 1300px) {
     .column {

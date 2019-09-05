@@ -18,15 +18,17 @@
           {{ scope.row.desc }}
         </template>
       </el-table-column>
-      <el-table-column label="附件历史" width="110" align="center">
+      <el-table-column label="原型历史" width="110" align="center">
         <template slot-scope="scope">
-          {{ scope.row.desc }}
-          <axure-attachment />
+          <el-button type="primary" size="mini" @click="toggle">
+            历史
+          </el-button>
+          <attachment v-if="show" :axure-group-id="scope.row.axure_group_id" :axure-id="scope.row.id" />
         </template>
       </el-table-column>
       <el-table-column label="最新原型地址" width="110" align="center">
         <template slot-scope="scope">
-          <a target="_blank" :href="scope.row.web_link" class="ax-axure-link">
+          <a target="_blank" :href="scope.row.web_link" class="axure-link">
             最新地址
           </a>
         </template>
@@ -48,16 +50,23 @@
 
 <script>
 import { getList } from '@/api/axure'
-import AxureAttachment from '@/views/attachments/index'
+import Attachment from '@/views/attachments/index'
 import CopyLink from './CopyLink'
 
 export default {
   components: {
-    AxureAttachment,
+    Attachment,
     CopyLink
+  },
+  props: {
+    axureGroupId: {
+      type: Number,
+      required: true
+    }
   },
   data() {
     return {
+      show: false,
       list: null,
       listLoading: true
     }
@@ -66,10 +75,13 @@ export default {
     this.fetchData()
   },
   methods: {
+    toggle() {
+      this.show = !this.show
+    },
     fetchData() {
       this.listLoading = true
-      getList(1).then(response => {
-        this.list = response.data.axures
+      getList(this.axureGroupId).then(response => {
+        this.list = response.data
         this.listLoading = false
       })
     }
@@ -77,7 +89,7 @@ export default {
 }
 </script>
 <style scoped>
-  .ax-axure-link {
+  .axure-link {
     color: #20a0ff;
   }
 </style>

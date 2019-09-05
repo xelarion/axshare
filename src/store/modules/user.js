@@ -46,7 +46,8 @@ const actions = {
           reject('Verification failed, please Login again.')
         }
 
-        const { name, avatar } = data
+        const name = data.username
+        const avatar = data.avatar || 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif'
 
         commit('SET_NAME', name)
         commit('SET_AVATAR', avatar)
