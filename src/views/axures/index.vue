@@ -20,10 +20,9 @@
       </el-table-column>
       <el-table-column label="原型历史" width="110" align="center">
         <template slot-scope="scope">
-          <el-button type="primary" size="mini" @click="toggle">
+          <el-button type="primary" size="mini" @click="loadAttachments(scope.row.id)">
             历史
           </el-button>
-          <attachment v-if="show" :axure-group-id="scope.row.axure_group_id" :axure-id="scope.row.id" />
         </template>
       </el-table-column>
       <el-table-column label="最新原型地址" width="110" align="center">
@@ -45,13 +44,26 @@
         </template>
       </el-table-column>
     </el-table>
+
+    <attachment
+      v-if="attachmentModal.load"
+      :reload-key="attachmentModal.reloadKey"
+      :axure-group-id="attachmentModal.axureGroupId"
+      :axure-id="attachmentModal.axureId"
+    />
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
 import { getList } from '@/api/axure'
-import Attachment from '@/views/attachments/index'
+// import Attachment from '@/views/attachments/index'
 import CopyLink from './CopyLink'
+
+// todo 哪种好
+const Attachment = Vue.component('attachment', function(resolve) {
+  require(['@/views/attachments/index'], resolve)
+})
 
 export default {
   components: {
@@ -66,7 +78,12 @@ export default {
   },
   data() {
     return {
-      show: false,
+      attachmentModal: {
+        load: false,
+        reloadKey: +new Date(),
+        axureGroupId: this.axureGroupId,
+        axureId: 0
+      },
       list: null,
       listLoading: true
     }
@@ -75,8 +92,10 @@ export default {
     this.fetchData()
   },
   methods: {
-    toggle() {
-      this.show = !this.show
+    loadAttachments(axureId) {
+      this.attachmentModal.reloadKey = +new Date()
+      this.attachmentModal.axureId = axureId
+      this.attachmentModal.load = true
     },
     fetchData() {
       this.listLoading = true
