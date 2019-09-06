@@ -4,7 +4,7 @@
       <router-link
         v-for="group in list"
         :key="group.id"
-        :to="'/axure_groups/' + group.id + '/axures'"
+        :to="{name: 'axures', params: { axure_group_id: group.id }}"
         class="column"
       >
         <div class="card-box">

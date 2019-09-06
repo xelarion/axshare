@@ -29,7 +29,9 @@ html {
 *:after {
   box-sizing: inherit;
 }
-
+a {
+  color: #20a0ff;
+}
 a:focus,
 a:active {
   outline: none;
@@ -39,7 +41,6 @@ a,
 a:focus,
 a:hover {
   cursor: pointer;
-  color: inherit;
   text-decoration: none;
 }
 

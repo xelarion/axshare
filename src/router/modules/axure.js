@@ -4,6 +4,7 @@ const axureRouter = {
   path: '/axure_groups/:axure_group_id/axures',
   component: Layout,
   redirect: '',
+  props: (route) => ({ axureGroupId: parseInt(route.params.axure_group_id) }),
   meta: {
     title: 'Axure',
     icon: 'table'
@@ -11,9 +12,21 @@ const axureRouter = {
   children: [
     {
       path: '',
+      name: 'axures',
       component: () => import('@/views/axures/index'),
-      props: (route) => ({ axureGroupId: parseInt(route.params.axure_group_id) }),
       meta: { title: 'Axure List' }
+    },
+    {
+      path: 'new',
+      name: 'new-axure',
+      component: () => import('@/views/axures/new'),
+      meta: { title: 'Axure New' }
+    },
+    {
+      path: ':id/edit',
+      name: 'edit-axure',
+      component: () => import('@/views/axures/edit'),
+      meta: { title: 'Axure Edit' }
     }
   ]
 }

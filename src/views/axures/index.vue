@@ -1,5 +1,11 @@
 <template>
   <div class="app-container">
+    <el-row class="operations-btn">
+      <router-link :to="{name: 'new-axure'}">
+        <el-button type="primary" size="small">上传原型</el-button>
+      </router-link>
+    </el-row>
+
     <el-table
       v-loading="listLoading"
       :data="list"
@@ -30,7 +36,7 @@
           <a v-if="scope.is_released" target="_blank" :href="scope.row.web_link" class="axure-link">
             最新地址
           </a>
-          <span v-else>正在构建...</span>
+          <span v-else title="请稍后刷新页面查看">正在构建...</span>
         </template>
       </el-table-column>
       <el-table-column class-name="status-col" label="永久地址" width="310" align="center">
@@ -42,6 +48,13 @@
         <template slot-scope="scope">
           <i class="el-icon-time" />
           <span>{{ scope.row.updated_at }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column align="center" label="操作" width="200">
+        <template v-slot="scope">
+          <router-link :to="{name: 'edit-axure', params: { id: scope.row.id }}">
+            <i class="el-icon-upload" />更新原型
+          </router-link>
         </template>
       </el-table-column>
     </el-table>
@@ -71,22 +84,21 @@ export default {
     Attachment,
     CopyLink
   },
-  props: {
-    axureGroupId: {
-      type: Number,
-      required: true
-    }
-  },
   data() {
     return {
       attachmentModal: {
         load: false,
-        reloadKey: +new Date(),
-        axureGroupId: this.axureGroupId,
+        reloadKey: 0,
+        axureGroupId: 0,
         axureId: 0
       },
       list: null,
       listLoading: true
+    }
+  },
+  computed: {
+    axureGroupId() {
+      return parseInt(this.$route.params.axure_group_id)
     }
   },
   created() {
@@ -95,6 +107,7 @@ export default {
   methods: {
     loadAttachments(axureId) {
       this.attachmentModal.reloadKey = +new Date()
+      this.attachmentModal.axureGroupId = this.axureGroupId
       this.attachmentModal.axureId = axureId
       this.attachmentModal.load = true
     },
@@ -109,7 +122,9 @@ export default {
 }
 </script>
 <style scoped>
-  .axure-link {
-    color: #20a0ff;
+  .operations-btn {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
   }
 </style>
