@@ -4,14 +4,27 @@
       v-el-drag-dialog
       width="70%"
       :visible.sync="visible"
-      :title="'ID:' + axureId + ':' + title"
+      :title="'ID : ' + axureId + ' : ' + title"
     >
       <el-table :data="list">
-        <el-table-column property="id" label="ID" width="80" />
+        <el-table-column property="id" label="ID" width="70" />
         <el-table-column property="user.username" label="上传作者" width="150" />
         <el-table-column property="created_at" label="上传时间" width="150" />
-        <el-table-column property="download_url" label="压缩包链接" width="200" />
-        <el-table-column property="web_link" label="原型地址" width="200" />
+        <el-table-column label="压缩包" width="200">
+          <template slot-scope="scope">
+            <a target="_blank" :href="scope.row.download_url" class="axure-link">
+              下载
+            </a>
+          </template>
+        </el-table-column>
+        <el-table-column label="原型地址" width="200">
+          <template slot-scope="scope">
+            <a v-if="scope.is_released" target="_blank" :href="scope.row.web_link" class="axure-link">
+              最新地址
+            </a>
+            <span v-else>正在构建...</span>
+          </template>
+        </el-table-column>
         <el-table-column property="desc" label="备注" />
       </el-table>
     </el-dialog>
@@ -21,6 +34,7 @@
 <script>
 import elDragDialog from '@/directive/el-drag-dialog' // base on element-ui
 import { getList } from '@/api/attachment'
+import { getAxure } from '@/api/axure'
 
 export default {
   name: 'Attachment',
@@ -58,9 +72,11 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
+      getAxure(this.axureGroupId, this.axureId).then(response => {
+        this.title = response.data.desc
+      })
       getList(this.axureGroupId, this.axureId).then(response => {
         this.list = response.data
-        this.title = ''
         this.listLoading = false
         this.visible = true
       })

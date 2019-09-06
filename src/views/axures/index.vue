@@ -10,7 +10,7 @@
     >
       <el-table-column align="center" label="ID" width="95">
         <template slot-scope="scope">
-          {{ scope.$index }}
+          {{ scope.row.id }}
         </template>
       </el-table-column>
       <el-table-column label="描述">
@@ -27,9 +27,10 @@
       </el-table-column>
       <el-table-column label="最新原型地址" width="110" align="center">
         <template slot-scope="scope">
-          <a target="_blank" :href="scope.row.web_link" class="axure-link">
+          <a v-if="scope.is_released" target="_blank" :href="scope.row.web_link" class="axure-link">
             最新地址
           </a>
+          <span v-else>正在构建...</span>
         </template>
       </el-table-column>
       <el-table-column class-name="status-col" label="永久地址" width="310" align="center">
