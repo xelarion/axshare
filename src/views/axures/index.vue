@@ -19,9 +19,9 @@
           {{ scope.row.id }}
         </template>
       </el-table-column>
-      <el-table-column label="描述">
+      <el-table-column label="主题描述">
         <template slot-scope="scope">
-          {{ scope.row.desc }}
+          {{ scope.row.name }}
         </template>
       </el-table-column>
       <el-table-column label="原型历史" width="110" align="center">

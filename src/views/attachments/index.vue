@@ -73,7 +73,7 @@ export default {
     fetchData() {
       this.listLoading = true
       getAxure(this.axureGroupId, this.axureId).then(response => {
-        this.title = response.data.desc
+        this.title = response.data.name
       })
       getList(this.axureGroupId, this.axureId).then(response => {
         this.list = response.data

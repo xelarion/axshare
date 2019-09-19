@@ -19,13 +19,13 @@ const axureRouter = {
     {
       path: 'new',
       name: 'new-axure',
-      component: () => import('@/views/axures/new'),
+      component: () => import('@/views/axures/New'),
       meta: { title: 'Axure New' }
     },
     {
       path: ':id/edit',
       name: 'edit-axure',
-      component: () => import('@/views/axures/edit'),
+      component: () => import('@/views/axures/Edit'),
       meta: { title: 'Axure Edit' }
     }
   ]

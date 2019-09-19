@@ -13,3 +13,19 @@ export function getAxure(axure_group_id, axure_id) {
     method: 'get'
   })
 }
+
+export function createAxure(axure_group_id, data) {
+  return request({
+    url: `/axure_groups/${axure_group_id}/axures`,
+    method: 'post',
+    data
+  })
+}
+
+export function updateAxure(axure_group_id, axure_id, data) {
+  return request({
+    url: `/axure_groups/${axure_group_id}/axure/${axure_id}`,
+    method: 'put',
+    data
+  })
+}
