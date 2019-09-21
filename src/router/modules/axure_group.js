@@ -11,6 +11,7 @@ const axureGroupRouter = {
   children: [
     {
       path: '',
+      name: 'axure_groups',
       component: () => import('@/views/axure_groups/index')
     }
   ]
