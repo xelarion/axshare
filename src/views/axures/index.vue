@@ -33,7 +33,7 @@
       </el-table-column>
       <el-table-column label="最新原型地址" width="110" align="center">
         <template slot-scope="scope">
-          <a v-if="scope.is_released" target="_blank" :href="scope.row.web_link" class="axure-link">
+          <a v-if="scope.row.is_released" target="_blank" :href="scope.row.web_link" class="axure-link">
             最新地址
           </a>
           <span v-else title="请稍后刷新页面查看">正在构建...</span>

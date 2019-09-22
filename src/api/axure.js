@@ -29,3 +29,11 @@ export function updateAxure(axure_group_id, axure_id, data) {
     data
   })
 }
+
+export function getAxureWeb(axure_id, params) {
+  return request({
+    url: `/axures/${axure_id}`,
+    method: 'get',
+    params
+  })
+}
