@@ -16,7 +16,6 @@
 <script>
 import { Message } from 'element-ui'
 import { getQiNiuToken } from '@/api/qiniu'
-import webConfig from '../../../public/static/config.js'
 
 export default {
   name: 'UploadAttachment',
@@ -24,7 +23,7 @@ export default {
     return {
       uploadSetting: {
         token: '',
-        url: webConfig.QINIU_UPLOAD_URL
+        url: process.env.QINIU_UPLOAD_URL
       },
       fileHash: ''
     }

@@ -15,7 +15,7 @@
             <router-link to="/">
               <el-dropdown-item>Dashboard</el-dropdown-item>
             </router-link>
-            <a target="_blank" href="https://github.com/PanJiaChen/vue-element-admin/">
+            <a target="_blank" href="https://github.com/ErvinCheung/axshare">
               <el-dropdown-item>Github</el-dropdown-item>
             </a>
             <el-dropdown-item divided>
