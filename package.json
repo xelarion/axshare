@@ -4,6 +4,7 @@
   "description": "axshare admin",
   "author": "ErvinCheung <1390838101@qq.com>",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "dev": "vue-cli-service serve",
     "build:prod": "vue-cli-service build",
@@ -19,6 +20,7 @@
     "body-parser": "latest",
     "chokidar": "latest",
     "clipboard": "^2.0.4",
+    "css-loader": "^3.2.0",
     "element-ui": "2.7.2",
     "js-cookie": "2.2.0",
     "normalize.css": "7.0.0",
@@ -46,7 +48,6 @@
     "eslint": "5.15.3",
     "eslint-plugin-vue": "5.2.2",
     "html-webpack-plugin": "3.2.0",
-    "mockjs": "1.0.1-beta3",
     "node-sass": "^4.9.0",
     "runjs": "^4.3.2",
     "sass-loader": "^7.1.0",
