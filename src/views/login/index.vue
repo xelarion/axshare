@@ -3,7 +3,7 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">Login Form</h3>
+        <h3 class="title">Axshare</h3>
       </div>
 
       <el-form-item prop="username">
@@ -43,12 +43,12 @@
 
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
 
-      <div class="login-widget">
-        <span>更多登录方式</span>
-        <a href="http://redmine.tajansoft.com/login/" class="link-type">
-          <img class="login-icon" src="@/assets/images/redmine_fluid_icon.png" alt="redmine">
-        </a>
-      </div>
+      <!--      <div class="login-widget">-->
+      <!--        <span>更多登录方式</span>-->
+      <!--        <a href="http://redmine.tajansoft.com/login/" class="link-type">-->
+      <!--          <img class="login-icon" src="@/assets/images/redmine_fluid_icon.png" alt="redmine">-->
+      <!--        </a>-->
+      <!--      </div>-->
 
     </el-form>
   </div>
