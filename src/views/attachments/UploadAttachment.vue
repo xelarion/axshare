@@ -2,7 +2,7 @@
   <el-upload
     class="upload-demo"
     drag
-    :action="uploadSetting.url"
+    :action="uploadSetting.upload_url"
     :data="uploadSetting"
     :on-exceed="onExceed"
     :on-success="onSuccess"
@@ -23,7 +23,7 @@ export default {
     return {
       uploadSetting: {
         token: '',
-        url: process.env.QINIU_UPLOAD_URL
+        upload_url: ''
       },
       fileHash: ''
     }
@@ -48,7 +48,7 @@ export default {
     },
     getToken() {
       getQiNiuToken().then(response => {
-        this.uploadSetting.token = response.data
+        this.uploadSetting = response.data
       })
     }
   }
