@@ -59,6 +59,14 @@
       </el-table-column>
     </el-table>
 
+    <pagination
+      v-show="pagination.total_count>0"
+      :total="pagination.total_count"
+      :page.sync="query.page"
+      :limit.sync="query.per_page"
+      @pagination="fetchData"
+    />
+
     <attachment
       v-if="attachmentModal.load"
       :reload-key="attachmentModal.reloadKey"
@@ -73,6 +81,7 @@ import Vue from 'vue'
 import { getList } from '@/api/axure'
 // import Attachment from '@/views/attachments/index'
 import CopyLink from './CopyLink'
+import Pagination from '@/components/Pagination'
 
 // todo 哪种好
 const Attachment = Vue.component('attachment', function(resolve) {
@@ -82,7 +91,8 @@ const Attachment = Vue.component('attachment', function(resolve) {
 export default {
   components: {
     Attachment,
-    CopyLink
+    CopyLink,
+    Pagination
   },
   data() {
     return {
@@ -93,6 +103,16 @@ export default {
         axureId: 0
       },
       list: null,
+      query: {
+        page: 1,
+        per_page: 20
+      },
+      pagination: {
+        current_page: 0,
+        per_page: 0,
+        total_count: 0,
+        total_pages: 0
+      },
       listLoading: true
     }
   },
@@ -113,8 +133,9 @@ export default {
     },
     fetchData() {
       this.listLoading = true
-      getList(this.axureGroupId).then(response => {
+      getList(this.axureGroupId, this.query).then(response => {
         this.list = response.data
+        this.pagination = response.paginate
         this.listLoading = false
       })
     }
