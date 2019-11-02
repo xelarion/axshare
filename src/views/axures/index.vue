@@ -26,9 +26,7 @@
       </el-table-column>
       <el-table-column label="原型历史" width="110" align="center">
         <template slot-scope="scope">
-          <el-button type="primary" size="mini" @click="loadAttachments(scope.row.id)">
-            历史
-          </el-button>
+          <a @click="loadAttachments(scope.row.id)">历史</a>
         </template>
       </el-table-column>
       <el-table-column label="最新原型地址" width="110" align="center">
@@ -39,7 +37,7 @@
           <span v-else title="请稍后刷新页面查看">正在构建...</span>
         </template>
       </el-table-column>
-      <el-table-column class-name="status-col" label="永久地址" width="310" align="center">
+      <el-table-column class-name="status-col" label="永久地址" width="300" align="center">
         <template slot-scope="scope">
           <copy-link :input-data="scope.row.permanent_link" />
         </template>
@@ -50,7 +48,7 @@
           <span>{{ scope.row.updated_at }}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="操作" width="200">
+      <el-table-column align="center" label="操作" width="150">
         <template v-slot="scope">
           <router-link :to="{name: 'edit-axure', params: { id: scope.row.id }}">
             <i class="el-icon-upload" />更新原型
