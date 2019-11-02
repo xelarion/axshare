@@ -39,7 +39,14 @@
       </el-table-column>
       <el-table-column class-name="status-col" label="永久地址" width="300" align="center">
         <template slot-scope="scope">
-          <copy-link :input-data="scope.row.permanent_link" />
+          <el-popover
+            placement="top-start"
+            width="200"
+            :open-delay="200"
+            trigger="hover"
+            content="访问该地址可以跳转到最新的原型地址，可用于分享。">
+            <copy-link slot="reference" :input-data="scope.row.permanent_link" />
+          </el-popover>
         </template>
       </el-table-column>
       <el-table-column align="center" prop="created_at" label="更新时间" width="200">

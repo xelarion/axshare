@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-input v-model="inputData" placeholder="Please input" class="input-data el-input--mini" />
+    <el-input v-model="inputData" readonly placeholder="Please input" class="input-data el-input--mini" />
     <el-button
       v-clipboard:copy="inputData"
       v-clipboard:success="clipboardSuccess"
@@ -16,7 +16,7 @@
 import clipboard from '@/directive/clipboard/index.js' // use clipboard by v-directive
 
 export default {
-  name: 'ClipboardDemo',
+  name: 'Clipboard',
   directives: {
     clipboard
   },
