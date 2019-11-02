@@ -48,7 +48,7 @@ export default {
       font-size: 14px;
     }
     .item {
-      padding: 10px;
+      padding: 8px;
       margin-bottom: 3px;
     }
     .item:hover {
