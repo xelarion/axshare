@@ -3,10 +3,10 @@ import Layout from '@/layout'
 const axureRouter = {
   path: '/axure_groups/:axure_group_id/axures',
   component: Layout,
-  redirect: '',
+  redirect: '/axure_groups',
   props: (route) => ({ axureGroupId: parseInt(route.params.axure_group_id) }),
   meta: {
-    title: 'Axure',
+    title: 'AxureGroup',
     icon: 'table'
   },
   children: [
