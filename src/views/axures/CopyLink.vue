@@ -6,7 +6,8 @@
       v-clipboard:success="clipboardSuccess"
       class="el-button el-button--primary el-button--mini"
       type="primary"
-      icon="document">
+      icon="document"
+    >
       copy
     </el-button>
   </div>

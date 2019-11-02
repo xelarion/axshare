@@ -15,6 +15,10 @@ import router from './router'
 import '@/icons' // icon
 import '@/permission' // permission control
 
+import moment from 'moment' // moment.js
+moment.locale('zh-cn')
+Vue.prototype.$moment = moment
+
 Vue.use(ElementUI, { locale })
 
 Vue.config.productionTip = false

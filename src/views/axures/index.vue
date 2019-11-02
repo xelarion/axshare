@@ -44,15 +44,15 @@
             width="200"
             :open-delay="200"
             trigger="hover"
-            content="访问该地址可以跳转到最新的原型地址，可用于分享。">
+            content="访问该地址可以跳转到最新的原型地址，可用于分享。"
+          >
             <copy-link slot="reference" :input-data="scope.row.permanent_link" />
           </el-popover>
         </template>
       </el-table-column>
-      <el-table-column align="center" prop="created_at" label="更新时间" width="200">
+      <el-table-column align="center" prop="created_at" label="更新时间" width="150">
         <template slot-scope="scope">
-          <i class="el-icon-time" />
-          <span>{{ scope.row.updated_at }}</span>
+          <moment-locale :time="scope.row.updated_at" />
         </template>
       </el-table-column>
       <el-table-column align="center" label="操作" width="150">
@@ -87,6 +87,7 @@ import { getList } from '@/api/axure'
 // import Attachment from '@/views/attachments/index'
 import CopyLink from './CopyLink'
 import Pagination from '@/components/Pagination'
+import MomentLocale from '@/components/MomentLocale'
 
 // todo 哪种好
 const Attachment = Vue.component('attachment', function(resolve) {
@@ -97,7 +98,8 @@ export default {
   components: {
     Attachment,
     CopyLink,
-    Pagination
+    Pagination,
+    MomentLocale
   },
   data() {
     return {
