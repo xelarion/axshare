@@ -6,3 +6,11 @@ export function getList(axure_group_id, axure_id) {
     method: 'get'
   })
 }
+
+export function getAllList(query) {
+  return request({
+    url: `/attachments`,
+    method: 'get',
+    params: query
+  })
+}

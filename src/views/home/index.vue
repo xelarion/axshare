@@ -1,16 +1,26 @@
 <template>
   <div class="home-container">
-    <span>最新活动</span>
-    <router-link to="/axure_groups">原型组织</router-link>
+    <el-row :gutter="20">
+      <el-col :span="16">
+        <activity />
+      </el-col>
+      <el-col :span="8">
+        <groups-list />
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import GroupsList from './GroupsList'
+import Activity from './Activity'
 
 export default {
   name: 'Dashboard',
   components: {
+    GroupsList,
+    Activity
   },
   computed: {
     ...mapGetters([

@@ -65,12 +65,12 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/axure_groups'
-    // redirect: 'home',
-    // children: [{
-    //   path: '/home',
-    //   component: () => import('@/views/home/index')
-    // }]
+    // redirect: '/axure_groups'
+    redirect: 'home',
+    children: [{
+      path: '/home',
+      component: () => import('@/views/home/index')
+    }]
   },
   axureGroupRouter,
   axureRouter,
