@@ -9,7 +9,11 @@
       <el-table :data="list">
         <el-table-column property="id" label="ID" width="70" />
         <el-table-column property="user.username" label="上传作者" width="150" />
-        <el-table-column property="created_at" label="上传时间" width="150" />
+        <el-table-column prop="created_at" label="上传时间" width="150">
+          <template slot-scope="scope">
+            <moment-locale :time="scope.row.created_at" />
+          </template>
+        </el-table-column>
         <el-table-column label="压缩包" width="120">
           <template slot-scope="scope">
             <a target="_blank" :href="scope.row.download_url" class="axure-link">
@@ -33,11 +37,15 @@
 
 <script>
 import elDragDialog from '@/directive/el-drag-dialog' // base on element-ui
+import MomentLocale from '@/components/MomentLocale'
 import { getList } from '@/api/attachment'
 import { getAxure } from '@/api/axure'
 
 export default {
   name: 'Attachment',
+  components: {
+    MomentLocale
+  },
   directives: { elDragDialog },
   props: {
     axureGroupId: {

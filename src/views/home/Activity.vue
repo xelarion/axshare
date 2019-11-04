@@ -9,11 +9,11 @@
           placement="top"
         >
           <el-card>
-            <div class="activity-title">
+            <div v-if="attachment.id > 0" class="activity-title">
               <span class="operator">
                 {{ attachment.user.username }}
               </span>
-              <moment-locale :time="attachment.updated_at" />
+              <moment-locale :time="attachment.created_at" />
               <span class="operation-title">更新了</span>
               <span class="axure-group-name">
                 <router-link :to="{name: 'axures', params: { axure_group_id: attachment.axure_group.id }}">
@@ -55,7 +55,9 @@ export default {
   },
   data() {
     return {
-      list: null,
+      list: [{
+        id: 0
+      }],
       query: {
         page: 1,
         per_page: 20

@@ -49,7 +49,7 @@ export default {
     width: 25%;
     height: 190px;
   }
-  @media screen and (max-width: 1300px) {
+  @media screen and (max-width: 1200px) {
     .column {
       width: 50%;
     }
