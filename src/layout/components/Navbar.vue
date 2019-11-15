@@ -13,7 +13,10 @@
           </div>
           <el-dropdown-menu slot="dropdown" class="right-dropdown-menu">
             <router-link to="/">
-              <el-dropdown-item>Dashboard</el-dropdown-item>
+              <el-dropdown-item>Home</el-dropdown-item>
+            </router-link>
+            <router-link to="/users">
+              <el-dropdown-item>Users</el-dropdown-item>
             </router-link>
             <a target="_blank" href="https://github.com/ErvinCheung/axshare">
               <el-dropdown-item>Github</el-dropdown-item>
