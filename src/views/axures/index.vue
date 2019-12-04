@@ -1,6 +1,14 @@
 <template>
   <div class="app-container">
     <el-row class="operations-btn">
+      <el-form :inline="true" :model="formInline" class="demo-form-inline">
+        <el-form-item>
+          <el-input v-model="formInline.name" placeholder="主题描述" />
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" size="small" @click="onSubmit">查询</el-button>
+        </el-form-item>
+      </el-form>
       <router-link :to="{name: 'new-axure'}">
         <el-button type="primary" size="small">上传原型</el-button>
       </router-link>
@@ -103,6 +111,9 @@ export default {
   },
   data() {
     return {
+      formInline: {
+        name: ''
+      },
       attachmentModal: {
         load: false,
         reloadKey: 0,
@@ -112,7 +123,8 @@ export default {
       list: null,
       query: {
         page: 1,
-        per_page: 20
+        per_page: 20,
+        search_conditions: {}
       },
       pagination: {
         current_page: 0,
@@ -137,6 +149,10 @@ export default {
       this.attachmentModal.axureGroupId = this.axureGroupId
       this.attachmentModal.axureId = axureId
       this.attachmentModal.load = true
+    },
+    onSubmit() {
+      this.query.search_conditions = { name: this.formInline.name }
+      this.fetchData()
     },
     fetchData() {
       this.listLoading = true
