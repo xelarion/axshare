@@ -1,17 +1,23 @@
 <template>
   <div class="app-container">
     <el-row class="operations-btn">
-      <el-form :inline="true" :model="formInline" class="demo-form-inline">
-        <el-form-item>
-          <el-input v-model="formInline.name" placeholder="主题描述" />
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" size="small" @click="onSubmit">查询</el-button>
-        </el-form-item>
-      </el-form>
-      <router-link :to="{name: 'new-axure'}">
-        <el-button type="primary" size="small">上传原型</el-button>
-      </router-link>
+      <el-col :span="12">
+        <el-col :span="12">
+          <el-input
+            v-model="searchName"
+            placeholder="主题描述"
+            prefix-icon="el-icon-search"
+            maxlength="10"
+            show-word-limit
+            @keyup.enter.native="onSubmit"
+          />
+        </el-col>
+      </el-col>
+      <el-col :span="12">
+        <router-link :to="{name: 'new-axure'}">
+          <el-button type="primary" size="small" class="button_axures_right">上传原型</el-button>
+        </router-link>
+      </el-col>
     </el-row>
 
     <el-table
@@ -111,9 +117,7 @@ export default {
   },
   data() {
     return {
-      formInline: {
-        name: ''
-      },
+      searchName: '',
       attachmentModal: {
         load: false,
         reloadKey: 0,
@@ -151,7 +155,7 @@ export default {
       this.attachmentModal.load = true
     },
     onSubmit() {
-      this.query.search_conditions = { name: this.formInline.name }
+      this.query.search_conditions = { name: this.searchName }
       this.fetchData()
     },
     fetchData() {
@@ -170,5 +174,8 @@ export default {
     margin-bottom: 10px;
     display: flex;
     justify-content: flex-end;
+  }
+  .button_axures_right{
+    float: right;
   }
 </style>
