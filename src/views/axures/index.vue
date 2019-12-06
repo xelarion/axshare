@@ -15,7 +15,7 @@
       </el-col>
       <el-col :span="12">
         <router-link :to="{name: 'new-axure'}">
-          <el-button type="primary" size="small" class="button_axures_right">上传原型</el-button>
+          <el-button type="primary" size="small" class="new-axure-btn">上传原型</el-button>
         </router-link>
       </el-col>
     </el-row>
@@ -175,7 +175,7 @@ export default {
     display: flex;
     justify-content: flex-end;
   }
-  .button_axures_right{
+  .new-axure-btn{
     float: right;
   }
 </style>
