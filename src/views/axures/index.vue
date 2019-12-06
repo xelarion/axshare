@@ -4,12 +4,12 @@
       <el-col :span="12">
         <el-col :span="12">
           <el-input
-            v-model="searchName"
+            v-model="query.search_conditions.name"
             placeholder="主题描述"
             prefix-icon="el-icon-search"
             maxlength="10"
             show-word-limit
-            @keyup.enter.native="onSubmit"
+            @keyup.enter.native="submitSearch"
           />
         </el-col>
       </el-col>
@@ -117,7 +117,6 @@ export default {
   },
   data() {
     return {
-      searchName: '',
       attachmentModal: {
         load: false,
         reloadKey: 0,
@@ -128,7 +127,9 @@ export default {
       query: {
         page: 1,
         per_page: 20,
-        search_conditions: {}
+        search_conditions: {
+          name: ''
+        }
       },
       pagination: {
         current_page: 0,
@@ -154,8 +155,7 @@ export default {
       this.attachmentModal.axureId = axureId
       this.attachmentModal.load = true
     },
-    onSubmit() {
-      this.query.search_conditions = { name: this.searchName }
+    submitSearch() {
       this.fetchData()
     },
     fetchData() {
