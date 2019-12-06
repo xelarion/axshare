@@ -1,9 +1,23 @@
 <template>
   <div class="app-container">
     <el-row class="operations-btn">
-      <router-link :to="{name: 'new-axure'}">
-        <el-button type="primary" size="small">上传原型</el-button>
-      </router-link>
+      <el-col :span="12">
+        <el-col :span="12">
+          <el-input
+            v-model="query.search_conditions.name"
+            placeholder="主题描述"
+            prefix-icon="el-icon-search"
+            maxlength="10"
+            show-word-limit
+            @keyup.enter.native="submitSearch"
+          />
+        </el-col>
+      </el-col>
+      <el-col :span="12">
+        <router-link :to="{name: 'new-axure'}">
+          <el-button type="primary" size="small" class="new-axure-btn">上传原型</el-button>
+        </router-link>
+      </el-col>
     </el-row>
 
     <el-table
@@ -112,7 +126,10 @@ export default {
       list: null,
       query: {
         page: 1,
-        per_page: 20
+        per_page: 20,
+        search_conditions: {
+          name: ''
+        }
       },
       pagination: {
         current_page: 0,
@@ -138,6 +155,9 @@ export default {
       this.attachmentModal.axureId = axureId
       this.attachmentModal.load = true
     },
+    submitSearch() {
+      this.fetchData()
+    },
     fetchData() {
       this.listLoading = true
       getList(this.axureGroupId, this.query).then(response => {
@@ -154,5 +174,8 @@ export default {
     margin-bottom: 10px;
     display: flex;
     justify-content: flex-end;
+  }
+  .new-axure-btn{
+    float: right;
   }
 </style>
