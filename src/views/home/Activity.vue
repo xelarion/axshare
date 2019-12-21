@@ -13,7 +13,7 @@
               <span class="operator">
                 {{ attachment.user.username }}
               </span>
-              <moment-locale :time="attachment.created_at" />
+              <moment-locale :key="attachment.created_at" :time="attachment.created_at" />
               <span class="operation-title">更新了</span>
               <span class="axure-group-name">
                 <router-link :to="{name: 'axures', params: { axure_group_id: attachment.axure_group.id }}">

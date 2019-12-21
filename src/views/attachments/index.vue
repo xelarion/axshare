@@ -11,7 +11,7 @@
         <el-table-column property="user.username" label="上传作者" width="150" />
         <el-table-column prop="created_at" label="上传时间" width="150">
           <template slot-scope="scope">
-            <moment-locale :time="scope.row.created_at" />
+            <moment-locale :key="scope.row.created_at" :time="scope.row.created_at" />
           </template>
         </el-table-column>
         <el-table-column label="压缩包" width="120">

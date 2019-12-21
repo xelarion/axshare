@@ -66,7 +66,7 @@
       </el-table-column>
       <el-table-column align="center" prop="created_at" label="更新时间" width="150">
         <template slot-scope="scope">
-          <moment-locale :time="scope.row.updated_at" />
+          <moment-locale :key="scope.row.updated_at" :time="scope.row.updated_at" />
         </template>
       </el-table-column>
       <el-table-column align="center" label="操作" width="150">
