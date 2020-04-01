@@ -51,6 +51,10 @@
       <!--      </div>-->
 
     </el-form>
+
+    <div style="color: rgb(255, 255, 255);position: absolute;bottom: 30px;width: 100%;text-align: center;">
+      <a target="_blank" style="color: #93c9f1" href="http://www.beian.miit.gov.cn/">苏ICP备17032905号-3</a> Copyright © 南通塔扬信息科技有限公司 2019
+    </div>
   </div>
 </template>
 
