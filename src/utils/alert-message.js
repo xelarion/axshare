@@ -12,7 +12,7 @@ const messageDuration = {
 export function alertMessage(messageStruct) {
   if (messageStruct.type !== '') {
     Message({
-      message: messageStruct.message,
+      message: messageStruct.content,
       type: messageStruct.type,
       duration: messageDuration[messageStruct.type],
       showClose: true

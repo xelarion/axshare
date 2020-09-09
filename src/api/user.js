@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function getList(query) {
   return request({
-    url: `/users`,
+    url: `/accounts`,
     method: 'get',
     params: query
   })
@@ -10,14 +10,14 @@ export function getList(query) {
 
 export function getUser(userId) {
   return request({
-    url: `/users/${userId}`,
+    url: `/accounts/${userId}`,
     method: 'get'
   })
 }
 
 export function createUser(data) {
   return request({
-    url: `/users`,
+    url: `/accounts`,
     method: 'post',
     data
   })
@@ -25,31 +25,24 @@ export function createUser(data) {
 
 export function updateUser(userId, data) {
   return request({
-    url: `/users/${userId}`,
-    method: 'put',
+    url: `/accounts/${userId}`,
+    method: 'post',
     data
   })
 }
 
 export function login(data) {
   return request({
-    url: '/user/login',
+    url: '/sign_in',
     method: 'post',
     data
   })
 }
 
-export function getInfo(token) {
+export function getInfo() {
   return request({
-    url: '/user/info',
-    method: 'get',
-    params: { token }
+    url: '/account/info',
+    method: 'get'
   })
 }
 
-export function logout() {
-  return request({
-    url: '/user/logout',
-    method: 'post'
-  })
-}

@@ -14,16 +14,36 @@
       fit
       highlight-current-row
     >
+      <el-table-column label="#" width="95">
+        <template slot-scope="scope">
+          {{ scope.row.id }}
+        </template>
+      </el-table-column>
+
+      <el-table-column label="登录账号">
+        <template slot-scope="scope">
+          {{ scope.row.username }}
+        </template>
+      </el-table-column>
+
       <el-table-column label="用户昵称">
         <template slot-scope="scope">
           {{ scope.row.nickname }}
         </template>
       </el-table-column>
-      <el-table-column label="登录名">
+
+      <el-table-column label="邮箱">
         <template slot-scope="scope">
-          {{ scope.row.username }}
+          {{ scope.row.email }}
         </template>
       </el-table-column>
+
+      <el-table-column label="更新于">
+        <template slot-scope="scope">
+          {{ scope.row.updated_at }}
+        </template>
+      </el-table-column>
+
       <el-table-column align="center" label="操作" width="150">
         <template v-slot="scope">
           <router-link :to="{name: 'edit-user', params: { id: scope.row.id }}">

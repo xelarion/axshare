@@ -18,7 +18,7 @@
             <router-link to="/users">
               <el-dropdown-item>Users</el-dropdown-item>
             </router-link>
-            <a target="_blank" href="https://github.com/ErvinCheung/axshare">
+            <a target="_blank" href="https://github.com/xandercheung/axshare">
               <el-dropdown-item>Github</el-dropdown-item>
             </a>
             <el-dropdown-item divided>
