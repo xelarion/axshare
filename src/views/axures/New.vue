@@ -7,7 +7,7 @@
             <el-form-item label="主题描述" prop="name">
               <el-input v-model="ruleForm.name" />
             </el-form-item>
-            <el-form-item label="内容备注" prop="attachment.desc">
+            <el-form-item label="原型描述" prop="attachment.desc">
               <el-input v-model="ruleForm.attachment.desc" type="textarea" />
             </el-form-item>
             <el-form-item label="原型文件" prop="attachment.file_hash">

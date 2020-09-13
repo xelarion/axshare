@@ -1,5 +1,10 @@
 <template>
   <div class="app-container groups">
+    <el-row class="operations-btn">
+      <router-link :to="{name: 'new-axure-group'}">
+        <el-button type="primary" size="small">新增原型组织</el-button>
+      </router-link>
+    </el-row>
     <div class="groups-list">
       <router-link
         v-for="group in list"
@@ -43,6 +48,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .operations-btn {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+  }
   .column {
     padding: 10px;
     float: left;
@@ -69,7 +79,7 @@ export default {
     height: 100%;
     overflow: hidden;
     cursor: pointer;
-    border: #c2c2c2 solid 1px;
+    border: #cfcdcd solid 1px;
     border-radius: 4px;
     position: relative;
     color: #6788a2;
@@ -91,5 +101,6 @@ export default {
   }
   .card-box .desc {
     color: #6788a2;
+    word-break: break-all;
   }
 </style>

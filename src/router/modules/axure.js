@@ -6,7 +6,7 @@ const axureRouter = {
   redirect: '/axure_groups',
   props: (route) => ({ axureGroupId: parseInt(route.params.axure_group_id) }),
   meta: {
-    title: 'AxureGroup',
+    title: '原型组织',
     icon: 'table'
   },
   children: [
@@ -14,19 +14,19 @@ const axureRouter = {
       path: '',
       name: 'axures',
       component: () => import('@/views/axures/index'),
-      meta: { title: 'Axure List' }
+      meta: { title: '原型列表' }
     },
     {
       path: 'new',
       name: 'new-axure',
       component: () => import('@/views/axures/New'),
-      meta: { title: 'Axure New' }
+      meta: { title: '新增' }
     },
     {
       path: ':id/edit',
       name: 'edit-axure',
       component: () => import('@/views/axures/Edit'),
-      meta: { title: 'Axure Edit' }
+      meta: { title: '编辑' }
     }
   ]
 }

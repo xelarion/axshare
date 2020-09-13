@@ -31,6 +31,22 @@ export function updateUser(userId, data) {
   })
 }
 
+export function updateUserPassword(userId, data) {
+  return request({
+    url: `/accounts/${userId}/password`,
+    method: 'post',
+    data
+  })
+}
+
+export function resetUserPassword(userId, data) {
+  return request({
+    url: `/accounts/${userId}/reset_password`,
+    method: 'post',
+    data
+  })
+}
+
 export function login(data) {
   return request({
     url: '/sign_in',

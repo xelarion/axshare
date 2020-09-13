@@ -1,5 +1,6 @@
 # axshare
 
+server API: https://github.com/XanderCheung/axshare-go
 ## Project setup
 ```
 npm install

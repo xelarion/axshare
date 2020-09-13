@@ -11,7 +11,7 @@
           <el-card>
             <div v-if="attachment.id > 0" class="activity-title">
               <span class="operator">
-                {{ attachment.user.username }}
+                {{ attachment.user.nickname }}
               </span>
               <moment-locale :key="attachment.created_at" :time="attachment.created_at" />
               <span class="operation-title">更新了</span>
@@ -77,7 +77,9 @@ export default {
   methods: {
     fetchData() {
       getAllList(this.query).then(response => {
-        this.list = response.data
+        if (response.paginate.total_count > 0) {
+          this.list = response.data
+        }
         this.pagination = response.paginate
       })
     }

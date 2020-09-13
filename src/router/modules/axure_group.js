@@ -5,14 +5,26 @@ const axureGroupRouter = {
   component: Layout,
   redirect: '',
   meta: {
-    title: 'AxureGroup',
+    title: '原型组织',
     icon: 'table'
   },
   children: [
     {
       path: '',
-      name: 'axure_groups',
+      name: 'axure-groups',
       component: () => import('@/views/axure_groups/index')
+    },
+    {
+      path: 'new',
+      name: 'new-axure-group',
+      component: () => import('@/views/axure_groups/New'),
+      meta: { title: '新增' }
+    },
+    {
+      path: ':id/edit',
+      name: 'edit-axure-group',
+      component: () => import('@/views/axure_groups/Edit'),
+      meta: { title: '编辑' }
     }
   ]
 }

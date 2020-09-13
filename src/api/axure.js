@@ -31,6 +31,13 @@ export function updateAxure(axure_group_id, axure_id, data) {
   })
 }
 
+export function destroyAxure(axure_group_id, axure_id) {
+  return request({
+    url: `/axure_groups/${axure_group_id}/axure/${axure_id}`,
+    method: 'delete'
+  })
+}
+
 export function getAxureWeb(axure_id, params) {
   return request({
     url: `/axures/${axure_id}`,

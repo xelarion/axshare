@@ -15,7 +15,10 @@
       </el-col>
       <el-col :span="12">
         <router-link :to="{name: 'new-axure'}">
-          <el-button type="primary" size="small" class="new-axure-btn">上传原型</el-button>
+          <el-button type="primary" icon="el-icon-upload" size="small" class="new-axure-btn">上传原型</el-button>
+        </router-link>
+        <router-link :to="{name: 'edit-axure-group', params: { id: axureGroupId }}">
+          <el-button type="primary" icon="el-icon-edit" size="small" class="edit-axure-group-btn">编辑原型组织</el-button>
         </router-link>
       </el-col>
     </el-row>
@@ -45,10 +48,7 @@
       </el-table-column>
       <el-table-column label="最新原型地址" width="110" align="center">
         <template slot-scope="scope">
-          <a v-if="scope.row.is_released" target="_blank" :href="scope.row.web_link" class="axure-link">
-            最新地址
-          </a>
-          <span v-else title="请稍后刷新页面查看">正在构建...</span>
+          <web-link :release-status="scope.row.release_status" :web-link="scope.row.web_link" />
         </template>
       </el-table-column>
       <el-table-column class-name="status-col" label="永久地址" width="300" align="center">
@@ -71,9 +71,10 @@
       </el-table-column>
       <el-table-column align="center" label="操作" width="150">
         <template v-slot="scope">
-          <router-link :to="{name: 'edit-axure', params: { id: scope.row.id }}">
-            <i class="el-icon-upload" />更新原型
+          <router-link :to="{name: 'edit-axure', params: { id: scope.row.id }}" class="el-link is-underline">
+            <i class="el-icon-edit" /> 编辑
           </router-link>
+          <el-link icon="el-icon-delete" @click="destroyAxure(scope.row.id, scope.row.name)">删除</el-link>
         </template>
       </el-table-column>
     </el-table>
@@ -97,9 +98,10 @@
 
 <script>
 import Vue from 'vue'
-import { getList } from '@/api/axure'
+import { getList, destroyAxure } from '@/api/axure'
 // import Attachment from '@/views/attachments/index'
 import CopyLink from './CopyLink'
+import WebLink from '@/views/attachments/WebLink'
 import Pagination from '@/components/Pagination'
 import MomentLocale from '@/components/MomentLocale'
 
@@ -111,6 +113,7 @@ const Attachment = Vue.component('attachment', function(resolve) {
 export default {
   components: {
     Attachment,
+    WebLink,
     CopyLink,
     Pagination,
     MomentLocale
@@ -165,6 +168,19 @@ export default {
         this.pagination = response.paginate
         this.listLoading = false
       })
+    },
+    destroyAxure(axureId, axureName) {
+      this.$confirm('确定删除 "' + axureName + '" 吗?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        destroyAxure(this.axureGroupId, axureId).then(response => {
+          if (response.code === 0) {
+            this.fetchData()
+          }
+        })
+      })
     }
   }
 }
@@ -177,5 +193,9 @@ export default {
   }
   .new-axure-btn{
     float: right;
+  }
+  .edit-axure-group-btn {
+    float: right;
+    margin-right: 10px;
   }
 </style>

@@ -8,7 +8,7 @@
     >
       <el-table :data="list">
         <el-table-column property="id" label="ID" width="70" />
-        <el-table-column property="user.username" label="上传作者" width="150" />
+        <el-table-column property="user.nickname" label="上传作者" width="150" />
         <el-table-column prop="created_at" label="上传时间" width="150">
           <template slot-scope="scope">
             <moment-locale :key="scope.row.created_at" :time="scope.row.created_at" />
@@ -23,10 +23,7 @@
         </el-table-column>
         <el-table-column label="原型地址" width="120">
           <template slot-scope="scope">
-            <a v-if="scope.row.is_released" target="_blank" :href="scope.row.web_link" class="axure-link">
-              最新地址
-            </a>
-            <span v-else title="请稍后刷新页面查看">正在构建...</span>
+            <web-link :release-status="scope.row.release_status" :web-link="scope.row.web_link" />
           </template>
         </el-table-column>
         <el-table-column property="desc" label="备注" />
@@ -38,12 +35,14 @@
 <script>
 import elDragDialog from '@/directive/el-drag-dialog' // base on element-ui
 import MomentLocale from '@/components/MomentLocale'
+import WebLink from '@/views/attachments/WebLink'
 import { getList } from '@/api/attachment'
 import { getAxure } from '@/api/axure'
 
 export default {
   name: 'Attachment',
   components: {
+    WebLink,
     MomentLocale
   },
   directives: { elDragDialog },

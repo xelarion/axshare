@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-row class="operations-btn">
       <router-link :to="{name: 'new-user'}">
-        <el-button type="primary" size="small">新建用户</el-button>
+        <el-button type="primary" size="small">新增用户</el-button>
       </router-link>
     </el-row>
 
@@ -38,17 +38,36 @@
         </template>
       </el-table-column>
 
+      <el-table-column label="状态">
+        <template slot-scope="scope">
+          <el-tooltip :content="'当前状态：' + scope.row.status" placement="top">
+            <el-switch
+              v-model="scope.row.status"
+              disabled
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              active-value="normal"
+              inactive-value="blocked"
+            />
+          </el-tooltip>
+        </template>
+      </el-table-column>
+
       <el-table-column label="更新于">
         <template slot-scope="scope">
           {{ scope.row.updated_at }}
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="操作" width="150">
+      <el-table-column align="center" label="操作" width="250">
         <template v-slot="scope">
-          <router-link :to="{name: 'edit-user', params: { id: scope.row.id }}">
-            编辑
+          <router-link :to="{name: 'edit-user', params: { id: scope.row.id }}" class="el-link is-underline">
+            <i class="el-icon-edit" /> 编辑
           </router-link>
+          <router-link :to="{name: 'edit-user-password', params: { id: scope.row.id }}" class="el-link is-underline">
+            <i class="el-icon-setting" /> 修改密码
+          </router-link>
+          <el-link icon="el-icon-delete" @click="resetPassword(scope.row.id, scope.row.nickname)">重置密码</el-link>
         </template>
       </el-table-column>
     </el-table>
@@ -64,7 +83,7 @@
 </template>
 
 <script>
-import { getList } from '@/api/user'
+import { getList, resetUserPassword } from '@/api/user'
 // import Attachment from '@/views/attachments/index'
 import Pagination from '@/components/Pagination'
 
@@ -98,6 +117,19 @@ export default {
         this.list = response.data
         this.pagination = response.paginate
         this.listLoading = false
+      })
+    },
+    resetPassword(userId, nickname) {
+      this.$confirm('确定重置 "' + nickname + '" 密码为 123456 吗?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        resetUserPassword(userId).then(response => {
+          if (response.code === 0) {
+            this.fetchData()
+          }
+        })
       })
     }
   }

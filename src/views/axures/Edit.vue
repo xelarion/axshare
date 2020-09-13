@@ -7,7 +7,7 @@
             <el-form-item label="主题描述" prop="name">
               <el-input v-model="ruleForm.name" />
             </el-form-item>
-            <el-form-item v-show="isSetRemark" label="内容备注" prop="attachment.desc">
+            <el-form-item v-show="isSetRemark" label="原型描述" prop="attachment.desc">
               <el-input v-model="ruleForm.attachment.desc" type="textarea" />
             </el-form-item>
             <el-form-item label="原型文件" prop="attachment.file_hash">
@@ -51,12 +51,7 @@ export default {
           { min: 1, max: 200, message: '长度在 1 到 200 个字符', trigger: 'blur' }
         ],
         attachment: {
-          desc: [
-            { required: true, message: '请填写此原型修改内容备注', trigger: 'blur' }
-          ],
-          file_hash: [
-            { required: true, message: '请上传原型, 如正在上传请等待上传完成！' }
-          ]
+          desc: { required: false, message: '请填写此原型修改内容备注', trigger: 'blur' }
         }
       }
     }
@@ -81,8 +76,12 @@ export default {
         this.ruleForm.name = response.data.name
       })
     },
+    setAttachmentDescRules() {
+      this.rules.attachment.desc.required = this.isSetRemark
+    },
     setAttachmentFileHash(fileHash) {
       this.ruleForm.attachment.file_hash = fileHash
+      this.setAttachmentDescRules()
     },
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {

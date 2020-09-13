@@ -13,16 +13,16 @@
           </div>
           <el-dropdown-menu slot="dropdown" class="right-dropdown-menu">
             <router-link to="/">
-              <el-dropdown-item>Home</el-dropdown-item>
+              <el-dropdown-item>首页</el-dropdown-item>
             </router-link>
             <router-link to="/users">
-              <el-dropdown-item>Users</el-dropdown-item>
+              <el-dropdown-item>用户管理</el-dropdown-item>
             </router-link>
             <a target="_blank" href="https://github.com/xandercheung/axshare">
               <el-dropdown-item>Github</el-dropdown-item>
             </a>
             <el-dropdown-item divided>
-              <span style="display:block;" @click="logout">Log Out</span>
+              <span style="display:block;" @click="logout">登出</span>
             </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
