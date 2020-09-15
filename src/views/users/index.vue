@@ -38,7 +38,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="状态">
+      <el-table-column label="状态" width="70">
         <template slot-scope="scope">
           <el-tooltip :content="'当前状态：' + scope.row.status" placement="top">
             <el-switch

@@ -18,6 +18,9 @@
             <router-link to="/users">
               <el-dropdown-item>用户管理</el-dropdown-item>
             </router-link>
+            <router-link :to="{name: 'edit-config'}">
+              <el-dropdown-item>系统设置</el-dropdown-item>
+            </router-link>
             <a target="_blank" href="https://github.com/xandercheung/axshare">
               <el-dropdown-item>Github</el-dropdown-item>
             </a>

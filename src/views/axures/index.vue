@@ -48,7 +48,11 @@
       </el-table-column>
       <el-table-column label="最新原型地址" width="110" align="center">
         <template slot-scope="scope">
-          <web-link :release-status="scope.row.release_status" :web-link="scope.row.web_link" />
+          <web-link
+            :release-status="scope.row.release_status"
+            :release-error="scope.row.release_error"
+            :web-link="scope.row.web_link"
+          />
         </template>
       </el-table-column>
       <el-table-column class-name="status-col" label="永久地址" width="300" align="center">

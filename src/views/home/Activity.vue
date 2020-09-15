@@ -21,9 +21,17 @@
                 </router-link>
               </span>
               <span class="operation-title">原型 [</span>
-              <a target="_blank" :href="attachment.web_link">
+              <a v-if="attachment.release_status === 'successful'" target="_blank" :href="attachment.web_link">
                 {{ attachment.axure.name }}
               </a>
+              <el-tooltip v-else-if="attachment.release_status === 'pending'" placement="top">
+                <div slot="content">正在构建...</div>
+                <span class="pending">{{ attachment.axure.name }}</span>
+              </el-tooltip>
+              <el-tooltip v-else-if="attachment.release_status === 'failed'" placement="top">
+                <div slot="content">构建失败</div>
+                <span class="failed">{{ attachment.axure.name }}</span>
+              </el-tooltip>
               <span class="operation-title">]</span>
             </div>
             <p class="attachment-desc">{{ attachment.desc }}</p>
@@ -109,5 +117,11 @@ export default {
   .attachment-desc {
     color: #888;
     line-height: 22px;
+  }
+  .failed {
+    color: red;
+  }
+  .pending {
+    color: #d32cf1;
   }
 </style>

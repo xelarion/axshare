@@ -10,6 +10,7 @@ import axureGroupRouter from '@/router/modules/axure_group'
 import axureRouter from '@/router/modules/axure'
 import attachmentRouter from '@/router/modules/attachment'
 import userRouter from '@/router/modules/user'
+import configRouter from '@/router/modules/config'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -77,6 +78,7 @@ export const constantRoutes = [
   axureRouter,
   attachmentRouter,
   userRouter,
+  configRouter,
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }

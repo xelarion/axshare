@@ -3,7 +3,7 @@
     <el-tooltip
       :content="time"
       placement="top"
-      :open-delay="300"
+      :open-delay="200"
     >
       <span>{{ localTime }}</span>
     </el-tooltip>

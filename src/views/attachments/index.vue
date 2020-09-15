@@ -23,7 +23,11 @@
         </el-table-column>
         <el-table-column label="原型地址" width="120">
           <template slot-scope="scope">
-            <web-link :release-status="scope.row.release_status" :web-link="scope.row.web_link" />
+            <web-link
+              :release-status="scope.row.release_status"
+              :release-error="scope.row.release_error"
+              :web-link="scope.row.web_link"
+            />
           </template>
         </el-table-column>
         <el-table-column property="desc" label="备注" />

@@ -3,7 +3,7 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">Axshare</h3>
+        <h3 class="title">{{ publicSetting.site_name }}</h3>
       </div>
 
       <el-form-item prop="username">
@@ -52,14 +52,16 @@
 
     </el-form>
 
-    <div style="color: rgb(255, 255, 255);position: absolute;bottom: 30px;width: 100%;text-align: center;">
-      <a target="_blank" style="color: #93c9f1" href="http://www.beian.miit.gov.cn/">苏ICP备17032905号-3</a> Copyright © 南通塔扬信息科技有限公司 2019
+    <div class="footer">
+      <a target="_blank" style="color: #93c9f1" href="http://www.beian.miit.gov.cn/">{{ publicSetting.icp_record_no }}</a>
+      {{ publicSetting.copyright }}
     </div>
   </div>
 </template>
 
 <script>
 import { validUsername } from '@/utils/validate'
+import { getPublicConfig } from '@/api/config'
 
 export default {
   name: 'Login',
@@ -79,6 +81,12 @@ export default {
       }
     }
     return {
+      publicSetting: {
+        copyright: '',
+        icp_record_link: '',
+        icp_record_no: '',
+        site_name: 'Axshare'
+      },
       loginForm: {
         username: '',
         password: ''
@@ -100,6 +108,9 @@ export default {
       immediate: true
     }
   },
+  created() {
+    this.fetchData()
+  },
   methods: {
     showPwd() {
       if (this.passwordType === 'password') {
@@ -109,6 +120,11 @@ export default {
       }
       this.$nextTick(() => {
         this.$refs.password.focus()
+      })
+    },
+    fetchData() {
+      getPublicConfig().then(response => {
+        this.publicSetting = response.data
       })
     },
     handleLogin() {
@@ -243,6 +259,14 @@ $light_gray:#eee;
     color: $dark_gray;
     cursor: pointer;
     user-select: none;
+  }
+
+  .footer {
+    color: rgb(255, 255, 255);
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    text-align: center;
   }
 }
 </style>
