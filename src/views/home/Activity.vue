@@ -117,6 +117,11 @@ export default {
   .attachment-desc {
     color: #888;
     line-height: 22px;
+    max-height: 70px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
   }
   .failed {
     color: red;
