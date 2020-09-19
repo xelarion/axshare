@@ -92,12 +92,18 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          updateConfig(this.ruleForm).then(response => {
-            if (response.code === 0) {
-              this.$router.push({ name: 'edit-config' })
-            } else {
-              return false
-            }
+          this.$confirm('确定更改吗?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
+            updateConfig(this.ruleForm).then(response => {
+              if (response.code === 0) {
+                this.$router.push({ name: 'edit-config' })
+              } else {
+                return false
+              }
+            })
           })
         } else {
           return false
