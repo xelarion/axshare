@@ -71,3 +71,31 @@ docker run \
 ```
 
 Now Visit http://localhost:9666
+
+## More
+[nginx config example](https://github.com/XanderCheung/axshare/blob/master/nginx/nginx.home.conf)
+
+```shell script
+server {
+  listen      80;
+  server_name your-domain.com;
+
+  location /ax/ {
+    root /your-directory/axures; # directory of released files
+    index  index.html index.htm;
+  }
+
+  location /api/ {
+    proxy_pass http://localhost:10524; # api server
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+  }
+
+  location / {
+    proxy_pass http://localhost:9666; # to web
+  }
+}
+
+```
