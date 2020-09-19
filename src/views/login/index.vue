@@ -42,14 +42,6 @@
       </el-form-item>
 
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
-
-      <!--      <div class="login-widget">-->
-      <!--        <span>更多登录方式</span>-->
-      <!--        <a href="http://redmine.tajansoft.com/login/" class="link-type">-->
-      <!--          <img class="login-icon" src="@/assets/images/redmine_fluid_icon.png" alt="redmine">-->
-      <!--        </a>-->
-      <!--      </div>-->
-
     </el-form>
 
     <div class="footer">
