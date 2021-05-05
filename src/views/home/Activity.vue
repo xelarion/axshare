@@ -32,6 +32,10 @@
                 <div slot="content">构建失败</div>
                 <span class="failed">{{ attachment.axure.name }}</span>
               </el-tooltip>
+              <el-tooltip v-else-if="attachment.release_status === 'cleaned'" placement="top">
+                <div slot="content">已被清理</div>
+                <span class="cleaned">{{ attachment.axure.name }}</span>
+              </el-tooltip>
               <span class="operation-title">]</span>
             </div>
             <p class="attachment-desc">{{ attachment.desc }}</p>
@@ -128,5 +132,8 @@ export default {
   }
   .pending {
     color: #d32cf1;
+  }
+  .cleaned {
+    color: #38bb35;
   }
 </style>

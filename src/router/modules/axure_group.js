@@ -3,7 +3,6 @@ import Layout from '@/layout'
 const axureGroupRouter = {
   path: '/axure_groups',
   component: Layout,
-  redirect: '',
   meta: {
     title: '原型组织',
     icon: 'table'
