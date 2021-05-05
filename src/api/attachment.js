@@ -14,3 +14,17 @@ export function getAllList(query) {
     params: query
   })
 }
+
+export function releaseAttachment(id) {
+  return request({
+    url: `/attachments/${id}/release`,
+    method: 'post'
+  })
+}
+
+export function cleanAttachment(id) {
+  return request({
+    url: `/attachments/${id}/clean`,
+    method: 'post'
+  })
+}
